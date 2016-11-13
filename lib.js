@@ -1,5 +1,3 @@
-
-
 /**
  * Funzione che controlla se la stringa "str" può rappresentare un intero non negativo (un numero naturale)
  */
@@ -8,8 +6,62 @@ function isNormalInteger(str) {
 }
 
 /**
+ * Variabile che contiene la capacità disponibile del magazzino
+ */
+var capacity = 30;
+
+/**
+ * Funzione che imposta il valore contenuto nel campo "capacity" alla capacità effettiva del magazzino
+ */
+function setCapacity(){
+	
+	document.getElementById("capacity").value = capacity;
+}
+
+/**
+ * Funzione che permette di cambiare al capacità massima del magazzino, impostandola al valore contenuto nel campo "capacity"
+ * Il valore inserito deve essere un intero non negativo; in caso contrario appare un finastra di warning.
+ */
+function changeCapacity(){
+	var cap = document.getElementById("capacity").value;
+	//Controllo che la capacità inserita sia valida, ovvero che sia un intero non negativo.
+	if(!isNormalInteger(cap)){
+		alert("Error!\nPlease, insert a not-negative integer.");
+	}else{
+		capacity = cap;
+	}
+}
+
+/**
+ * Funzione che controlla se la capacità massima del magazzino è stata superata.
+ * In tal caso viene mostrata una finestra di warning.
+ */
+function checkCapacity(){
+   
+	//Recupero la tabella dalla pagina
+	var table = document.getElementById("storedItem");
+
+	//Recupero la seconda riga, contenente le quantità di ogni oggetto
+	var amounts = table.rows[1];
+
+	//calcolo il numero totale di oggetti
+	var tot = 0;
+	for(var i =0; i<amounts.cells.length; i++){
+	   tot += parseInt(amounts.cells[i].innerHTML);
+	}
+	
+	//nel caso il numero superi la capacità massima, mostro una finestra di warning.
+	if(tot > capacity){
+	   alert("Attenzione capacità massima superata!");
+	}
+}
+
+
+
+/**
  * Funzione che aggiunge l'elemento specificato nel form alla tabella contenente gli elementi del "magazzino".
  * Questa funzione viene richiamata direttamente alla pressione del pulsante "Insert" all'interno del form.
+ * La quantità inserita deve essere un intero non negativo; in caso contrario appare un finastra di warning.
  */
 function addItem() {
 	
@@ -26,7 +78,7 @@ function addItem() {
 	var item = document.getElementById("item").value;
 	var amount = document.getElementById("amount").value;
 	
-	//Controllo che la quantità inserità sia valida, ovvero che sia un intero non negativo.
+	//Controllo che la quantità inserita sia valida, ovvero che sia un intero non negativo.
 	if(!isNormalInteger(amount)){
 		alert("Error!\nPlease, insert a not-negative integer.");
 		return;
@@ -67,6 +119,7 @@ function addItem() {
 
 	//Infine, aggiungo la quantità indicata dall'utente al contenuto della cella.
 	a_cell.innerHTML = parseInt(a_cell.innerHTML) + parseInt(amount);
+	
 }
 
 /**

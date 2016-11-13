@@ -7,8 +7,10 @@
     
   </head>
   
-  
-  <body>
+  <!-- Al termine del caricamento del body, viene impostato il contenuto del campo di testo che dovrebbe contenere la capacità del magazzino al valore effetivo della capacità-->
+  <body onload = "setCapacity();">
+	
+	
 	  
 	<!-- tabella contenente le informazioni sugli oggetti in magazzino-->
 	<table id ="storedItem" border = 1>
@@ -31,8 +33,20 @@
 	
 	<br>
 	
+	<!-- form per visualizzare e modificare la capacità massima del magazzino -->
+	<div>
+		<label for="capacity">Vuoi cambiare la capacità massima?</label>
+		<!-- campo di testo contenente la capacità del magazzino, attraverso il quale è anche possibile modificarla-->
+		<input type="text" id="capacity">
+
+		<!-- pulsante per modificare la capacità del magazzino. Dopo averne modificato il valore, controlla anche se la capacità è rispettata. -->
+		<input id="insert" type="button" value="Insert" onclick="changeCapacity(); checkCapacity();" />
+	
+	</div>
+	
 	<!-- pulsante che permette di visualizzare il form per inserire i nuovi oggetti-->
-	<button id="add" onclick = "show();">Aggiungi Item</button>
+	<!-- dopo aver reso visibile il form, controlla se la capacità è rispettata-->
+	<button id="add" onclick = "show(); checkCapacity();">Aggiungi Item</button>
 	
 	<!-- form per inserire i nuovi oggetti -->
 	<!-- inizialmente è invisibile e sparisce ogni volta viene inserito un nuovo oggetto -->
@@ -45,8 +59,8 @@
 		<label for="amount">Inserisci la quantità</label>
 		<input type="text" id="amount">
 		
-		<!-- pulsante per inserire l'oggetto nella tabella. Una volta inserito, nasconde il form -->
-		<input id="insert" type="button" value="Insert" onclick="addItem(); hide();" />
+		<!-- pulsante per inserire l'oggetto nella tabella. Una volta inserito, nasconde il form e controlla se la capacità del magazzino è stata superata-->
+		<input id="insert" type="button" value="Insert" onclick="addItem(); hide(); checkCapacity();" />
 	
 	</div>
 	
