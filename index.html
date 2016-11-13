@@ -1,1 +1,58 @@
-
+<!DOCTYPE HTML>
+<html>
+  <head>
+		<meta charset="utf-8">
+		<title>Warehouse Manager</title>
+		
+    
+  </head>
+  
+  
+  <body>
+	  
+	<!-- tabella contenente le informazioni sugli oggetti in magazzino-->
+	<table id ="storedItem" border = 1>
+		
+		<!-- la prima riga contiene i nomi degli oggetti presenti -->
+		<tr>
+			<td>item1</td>
+			<td>item2</td>
+			<td>item3</td>
+		</tr>
+		
+		<!-- la seconda riga contiene le quantità di ogni oggetto -->
+		<tr>
+			<td>4</td>
+			<td>5</td>
+			<td>2</td>
+		</tr>
+		
+	</table>
+	
+	<br>
+	
+	<!-- pulsante che permette di visualizzare il form per inserire i nuovi oggetti-->
+	<button id="add" onclick = "show();">Aggiungi Item</button>
+	
+	<!-- form per inserire i nuovi oggetti -->
+	<!-- inizialmente è invisibile e sparisce ogni volta viene inserito un nuovo oggetto -->
+	<div id="form" style ="display: none" >
+		<!-- campo per inserire il nome dell'oggetto -->
+		<label for="item">Inserisci l'oggetto</label>
+		<input type="text" id="item">
+		
+		<!-- campo per inserirne la quantita' -->
+		<label for="amount">Inserisci la quantità</label>
+		<input type="text" id="amount">
+		
+		<!-- pulsante per inserire l'oggetto nella tabella. Una volta inserito, nasconde il form -->
+		<input id="insert" type="button" value="Insert" onclick="addItem(); hide();" />
+	
+	</div>
+	
+	
+	<!-- Inclusione dello codice javascript che implementa le funzionalità del "magazzino" -->
+	<script type="text/javascript" src="lib.js"></script>
+	
+  </body>
+</html>
